@@ -44,6 +44,14 @@ class AuthForm extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+    if (nextProps.auth.authenticated) {
+      this.props.history.push('/')
+    }
+  }
+  componentWillMount() {
+    if (this.props.auth.authenticated) {
+      this.props.history.push('/');
+    }
   }
 
   render() {
@@ -114,10 +122,12 @@ class AuthForm extends Component {
 AuthForm.propTypes = {
   loginUser: PropTypes.func.isRequired,
   signupUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
   errors: state.errors,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { signupUser, loginUser })(withRouter(AuthForm));
