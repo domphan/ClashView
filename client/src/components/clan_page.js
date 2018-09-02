@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchClan, sortTable } from '../actions';
 import _ from 'lodash';
 
@@ -15,7 +16,7 @@ class ClanPage extends Component {
       return (
         <tr key={member.tag}>
           <th scope="row">{i++}</th>
-          <td>{member.name}</td>
+          <td><Link to={`/player/${member.tag}`}>{member.name}</Link></td>
           <td>{member.tag}</td>
           <td>{member.trophies}</td>
           <td>{member.donations}</td>
@@ -23,6 +24,15 @@ class ClanPage extends Component {
         </tr>
       );
     });
+  }
+  renderHeaders(clan, title, header) {
+    return(
+      <th scope="col">
+        <span className="sortSymbols" onClick={() => this.props.sortTable(clan, header, false)}><big>↿</big></span>
+        {title}
+        <span className="sortSymbols" onClick={() => this.props.sortTable(clan, header, true)}><big>⇂</big></span>
+      </th>
+    );
   }
 
   render() {
@@ -40,31 +50,11 @@ class ClanPage extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "name", false)}><big>↿</big></span>
-                Player
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "name", true)}><big>⇂</big></span>
-              </th>
-              <th scope="col">
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "tag", false)}><big>↿</big></span>
-                Tag
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "tag", true)}><big>⇂</big></span>
-              </th>
-              <th scope="col">
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "trophies", false)}><big>↿</big></span>
-                Trophies
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "trophies", true)}><big>⇂</big></span>
-              </th>
-              <th scope="col">
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations", false)}><big>↿</big></span>
-                Donations
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations", true)}><big>⇂</big></span>
-              </th>
-              <th scope="col">
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations_delta", false)}><big>↿</big></span>
-                Donations Delta
-                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations_delta", true)}><big>⇂</big></span>
-              </th>
+              {this.renderHeaders(clan, "Name", "name")}
+              {this.renderHeaders(clan, "Tag", "tag")}
+              {this.renderHeaders(clan, "Trophies", "trophies")}
+              {this.renderHeaders(clan, "Donations", "donations")}
+              {this.renderHeaders(clan, "Donations Delta", "donations_delta")}
             </tr>
           </thead>
           <tbody>

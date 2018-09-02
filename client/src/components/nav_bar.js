@@ -80,4 +80,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logoutUser })(withRouter(NavBar));
+export default connect(mapStateToProps, { logoutUser }, null, {
+  pure:false,
+})(withRouter(NavBar));
