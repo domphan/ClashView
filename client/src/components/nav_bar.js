@@ -20,17 +20,17 @@ class NavBar extends Component {
         <Nav pullLeft>
           <LinkContainer to="/clan">
             <NavItem eventKey={1}>
-              Clan
+              Your Clan
             </NavItem>
           </LinkContainer>
           <LinkContainer to="/players">
             <NavItem eventKey={2}>
-              Players
+              Player Lookup
             </NavItem>
           </LinkContainer>
         </Nav>
         <Nav pullRight>
-          <NavDropdown eventKey={3} title={user.email} id="basic-nav-dropdown">
+          <NavDropdown eventKey={3} title={user.email ? user.email : ''} id="basic-nav-dropdown">
             <LinkContainer to="/account/api_key">
               <MenuItem eventKey={3.1}>View API key</MenuItem>
             </LinkContainer>
@@ -45,6 +45,7 @@ class NavBar extends Component {
         </Nav>
       </div>
     );
+
     const notAuthenticated = (
       <div>
         <Nav pullRight>

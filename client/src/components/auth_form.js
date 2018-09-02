@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signupUser, loginUser } from '../actions/auth';
 import { withRouter } from 'react-router-dom';
-import register from '../registerServiceWorker';
 import PropTypes from 'prop-types';
 
 const LOGIN = 'login';
@@ -45,12 +44,12 @@ class AuthForm extends Component {
       this.setState({ errors: nextProps.errors });
     }
     if (nextProps.auth.authenticated) {
-      this.props.history.push('/')
+      this.props.history.push('/clan')
     }
   }
   componentWillMount() {
     if (this.props.auth.authenticated) {
-      this.props.history.push('/');
+      this.props.history.push('/clan');
     }
   }
 

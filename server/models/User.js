@@ -11,6 +11,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  api_key: {
+    type: String,
+    required: false,
+  },
 });
 
 const User = mongoose.model('users', UserSchema);
