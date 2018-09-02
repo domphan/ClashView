@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, SET_USER } from './index';
+import { GET_ERRORS, SET_USER } from '.';
 import setAuthToken from '../auth_token';
 import jwt_decode from 'jwt-decode';
 

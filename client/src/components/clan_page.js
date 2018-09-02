@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchClan } from '../actions';
+import { fetchClan, sortTable } from '../actions';
 import _ from 'lodash';
 
 class ClanPage extends Component {
@@ -40,11 +40,11 @@ class ClanPage extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Player</th>
-              <th scope="col">Tag</th>
-              <th scope="col">Trophies</th>
-              <th scope="col">Donations</th>
-              <th scope="col">Delta</th>
+              <th scope="col" onClick={() => this.props.sortTable(clan, "name")}>Player</th>
+              <th scope="col" onClick={() => this.props.sortTable(clan, "tag")}>Tag</th>
+              <th scope="col" onClick={() => this.props.sortTable(clan, "trophies")}>Trophies</th>
+              <th scope="col" onClick={() => this.props.sortTable(clan, "donations")}>Donations</th>
+              <th scope="col" onClick={() => this.props.sortTable(clan, "donations_delta")}>Delta</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +57,7 @@ class ClanPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { clan: state.clan};
+  return { clan: state.clan };
 }
 
-export default connect(mapStateToProps, { fetchClan })(ClanPage);
+export default connect(mapStateToProps, { fetchClan, sortTable })(ClanPage);
