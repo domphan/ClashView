@@ -4,18 +4,18 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const validateSignupInput = require('../validation/signup');
 const validateLoginInput = require('../validation/login');
-
 const User = require('../models/User');
 
 const router = express.Router();
 
 router.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
 router.get('/', (req, res, next) => {
+  console.log(req.headers);
   res.json([
     { id: 1, username: 'somebody' },
     { id: 2, username: 'somebody else' },
@@ -56,7 +56,6 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  console.log(req.body);
   const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
@@ -97,12 +96,15 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { id, name, email } = req.user;
+  const { id, email } = req.user;
   return res.json({
     id,
-    name,
     email,
   });
+});
+
+router.post('/api_key', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.status(200).json({ key: req.body.api_key });
 });
 
 module.exports = router;

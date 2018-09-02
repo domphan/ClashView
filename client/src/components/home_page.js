@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 
 class HomePage extends Component {
-  state = { users: [] };
+  state = { user: {} };
 
   componentDidMount() {
-    fetch('http://localhost:3001/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
+    axios.get('http://localhost:3001/api/users/me')
+      .then((res) => this.setState({ user: res.data }));
   }
   render() {
     return(
       <div>
         <div className="container-fluid">
-          <ul>
-            {this.state.users.map(user => 
-               <li key={user.id}>{user.username}</li>
-            )}
-          </ul>
+          <h1>Your id: {this.state.user.id}</h1>
+          <h1>Your email: {this.state.user.email}</h1>
         </div>
       </div>
     );

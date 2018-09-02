@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
-
 const usersRoute = require('./routes/users');
 const config = require('./db');
 
@@ -14,6 +13,7 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => { console.log('Database is connected'); },
   err => console.log(`Can not connect to the database: ${err}`)
 );
+require('./passport')(passport);
 
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +29,7 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   res.status(500);
+  console.log(`ERROR: ${err}`);
   res.send(`ERROR 500: ${err}`);
 });
 
