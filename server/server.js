@@ -7,9 +7,8 @@ const passport = require('passport');
 const usersRoute = require('./routes/users');
 const config = require('./db');
 
-
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || '3001';
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => { console.log('Database is connected'); },
