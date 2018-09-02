@@ -34,3 +34,7 @@
 .invalidInput {
   color: red;
 }
+
+.sortSymbols {
+    cursor: pointer;
+}

@@ -40,11 +40,31 @@ class ClanPage extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col" onClick={() => this.props.sortTable(clan, "name")}>Player</th>
-              <th scope="col" onClick={() => this.props.sortTable(clan, "tag")}>Tag</th>
-              <th scope="col" onClick={() => this.props.sortTable(clan, "trophies")}>Trophies</th>
-              <th scope="col" onClick={() => this.props.sortTable(clan, "donations")}>Donations</th>
-              <th scope="col" onClick={() => this.props.sortTable(clan, "donations_delta")}>Delta</th>
+              <th scope="col">
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "name", false)}><big>↿</big></span>
+                Player
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "name", true)}><big>⇂</big></span>
+              </th>
+              <th scope="col">
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "tag", false)}><big>↿</big></span>
+                Tag
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "tag", true)}><big>⇂</big></span>
+              </th>
+              <th scope="col">
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "trophies", false)}><big>↿</big></span>
+                Trophies
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "trophies", true)}><big>⇂</big></span>
+              </th>
+              <th scope="col">
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations", false)}><big>↿</big></span>
+                Donations
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations", true)}><big>⇂</big></span>
+              </th>
+              <th scope="col">
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations_delta", false)}><big>↿</big></span>
+                Donations Delta
+                <span className="sortSymbols" onClick={() => this.props.sortTable(clan, "donations_delta", true)}><big>⇂</big></span>
+              </th>
             </tr>
           </thead>
           <tbody>
