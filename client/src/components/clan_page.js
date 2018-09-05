@@ -6,7 +6,9 @@ import _ from 'lodash';
 
 class ClanPage extends Component {
   componentDidMount() {
-    this.props.fetchClan();
+    if (this.props.clan.error === undefined) {
+      this.props.fetchClan();
+    }
   }
 
   renderPlayers() {
@@ -41,6 +43,11 @@ class ClanPage extends Component {
       this.props.history.push('/login');
     }
     const { clan } = this.props;
+    if (clan.error) {
+      return(
+        <div className="container">{clan.error}</div>
+      );
+    }
     if (clan.clan_tag) {
       return (
         <div className="container">

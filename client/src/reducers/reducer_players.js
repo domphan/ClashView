@@ -8,8 +8,6 @@ export default function (state={}, action) {
     case NEW_SEARCH:
       return {};
     case ERROR_PLAYER:
-    console.log("from reducer");
-    console.log(action.payload);
       return {...action.payload};
     default:
       return state;
