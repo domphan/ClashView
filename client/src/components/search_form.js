@@ -19,7 +19,7 @@ class SearchForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.fetchPlayer(this.state.search);
+    this.props.history.push(`/players/${this.state.search}`)
   }
 
   render() {

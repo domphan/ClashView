@@ -2,24 +2,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SearchForm from './search_form';
-import { newSearch } from '../actions/player';
+import { newSearch, fetchPlayer } from '../actions/player';
 
 class PlayerPage extends Component {
   componentWillUnmount() {
-    if (this.props.player) {
-      this.props.newSearch(this.props.player);
+    this.props.newSearch();
+  }
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.fetchPlayer(id)
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      console.log("updated with: ");
+      console.log(this.props.player);
+      this.forceUpdate();
     }
   }
   render() {
     const { player } = this.props;
-    if (!player.name) {
-      return(
+    if (!this.props.player.name) {
+      return (
         <div className="container">
-          <SearchForm />
+          <em>Loading</em>
         </div>
       );
     }
-    return(
+    return (
       <div className="container">
         <h1>{player.name}</h1>
         <h2>{player.tag}</h2>
@@ -36,4 +45,4 @@ const mapStateToProps = (state) => {
   return { player: state.player }
 }
 
-export default connect(mapStateToProps, { newSearch })(PlayerPage);
+export default connect(mapStateToProps, { newSearch, fetchPlayer })(PlayerPage);

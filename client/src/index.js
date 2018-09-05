@@ -19,9 +19,11 @@ import LoginPage from './components/login_page';
 import SignupPage from './components/signup_page';
 import PlayerPage from './components/player_page';
 import ClanPage from './components/clan_page';
+import ApiKey from './components/api_key';
 import setAuthToken from './auth_token';
 import { setCurrentUser, logoutUser } from './actions/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SearchForm from './components/search_form';
 
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
@@ -39,15 +41,15 @@ if (localStorage.jwtToken) {
   }
 }
 
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
         <NavBar />
         <Switch>
+          <Route path="/account/api_key" component={ApiKey} />
           <Route path="/players/:id" component={PlayerPage} />
-          <Route path="/players" component={PlayerPage} />
+          <Route path="/players" component={SearchForm} />
           <Route path="/clan" component={ClanPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />

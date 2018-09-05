@@ -6,7 +6,7 @@ export const NEW_SEARCH = 'new_search';
 const ROOT_URL = "https://clashclantracker.appspot.com";
 
 export const fetchPlayer = (tag) => {
-  const request = axios.get(`${ROOT_URL}/players/${tag}`)  
+  const request = axios.get(`${ROOT_URL}/players/${tag}`)
   return {
     type: FETCH_PLAYER,
     payload: request,

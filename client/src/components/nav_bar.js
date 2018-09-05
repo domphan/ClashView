@@ -34,7 +34,7 @@ class NavBar extends Component {
             <LinkContainer to="/account/api_key">
               <MenuItem eventKey={3.1}>View API key</MenuItem>
             </LinkContainer>
-            <LinkContainer to="/account">
+            <LinkContainer to="/account/info">
               <MenuItem eventKey={3.2}>View Account Info</MenuItem>
             </LinkContainer>
             <MenuItem divider />
