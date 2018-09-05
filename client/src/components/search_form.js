@@ -24,6 +24,10 @@ class SearchForm extends Component {
 
   render() {
     const { search } = this.state;
+    const { auth } = this.props;
+    if (!auth.authenticated) {
+      this.props.history.push('/login');
+    }
     return(
       <div className="container">
         <h1>Player Lookup</h1>
@@ -59,6 +63,7 @@ class SearchForm extends Component {
 const mapStateToProps = (state) => {
   return {
     player: state.player,
+    auth: state.auth,
   };
 }
 

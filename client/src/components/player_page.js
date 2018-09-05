@@ -21,7 +21,14 @@ class PlayerPage extends Component {
   }
   render() {
     const { player } = this.props;
-    if (!this.props.player.name) {
+    if (player.error) {
+      return(
+        <div className="container">
+          {player.error}
+        </div>
+      );
+    }
+    if (!player.name) {
       return (
         <div className="container">
           <em>Loading</em>
@@ -42,7 +49,9 @@ class PlayerPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { player: state.player }
+  return { 
+    player: state.player,
+  }
 }
 
 export default connect(mapStateToProps, { newSearch, fetchPlayer })(PlayerPage);

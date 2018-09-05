@@ -16,7 +16,7 @@ class ClanPage extends Component {
       return (
         <tr key={member.tag}>
           <th scope="row">{i++}</th>
-          <td><Link to={`/player/${member.tag}`}>{member.name}</Link></td>
+          <td><Link to={`/players/${member.tag}`}>{member.name}</Link></td>
           <td>{member.tag}</td>
           <td>{member.trophies}</td>
           <td>{member.donations}</td>
@@ -36,38 +36,50 @@ class ClanPage extends Component {
   }
 
   render() {
+    const { auth } = this.props;
+    if (!auth.authenticated) {
+      this.props.history.push('/login');
+    }
     const { clan } = this.props;
-    return (
-      <div className="container">
-        <h1>{clan.name}</h1>
-        <h3>#{clan.clan_tag}</h3>
-        <h4>Members: {clan.member_amount}</h4>
-        <h4>Donations per week: {clan.donations_per_week}</h4>
-        <h4>Weakest Link: {clan.weakest_link}</h4>
-        <h4>Inactive members: {clan.inactive_members}</h4>
-        <h1>Players</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              {this.renderHeaders(clan, "Name", "name")}
-              {this.renderHeaders(clan, "Tag", "tag")}
-              {this.renderHeaders(clan, "Trophies", "trophies")}
-              {this.renderHeaders(clan, "Donations", "donations")}
-              {this.renderHeaders(clan, "Donations Delta", "donations_delta")}
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderPlayers()}
-          </tbody>
-        </table>
-      </div>
+    if (clan.clan_tag) {
+      return (
+        <div className="container">
+          <h1>{clan.name}</h1>
+          <h3>#{clan.clan_tag}</h3>
+          <h4>Members: {clan.member_amount}</h4>
+          <h4>Donations per week: {clan.donations_per_week}</h4>
+          <h4>Weakest Link: {clan.weakest_link}</h4>
+          <h4>Inactive members: {clan.inactive_members}</h4>
+          <h1>Players</h1>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                {this.renderHeaders(clan, "Name", "name")}
+                {this.renderHeaders(clan, "Tag", "tag")}
+                {this.renderHeaders(clan, "Trophies", "trophies")}
+                {this.renderHeaders(clan, "Donations", "donations")}
+                {this.renderHeaders(clan, "Donations Delta", "donations_delta")}
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderPlayers()}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+    return(
+      <div className="container">loading</div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { clan: state.clan };
+  return { 
+    clan: state.clan,
+    auth: state.auth,
+  };
 }
 
 export default connect(mapStateToProps, { fetchClan, sortTable })(ClanPage);
