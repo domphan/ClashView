@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import SearchForm from './search_form';
 import { newSearch, fetchPlayer } from '../actions/player';
 
 class PlayerPage extends Component {

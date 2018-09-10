@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchClan, sortTable } from '../actions';
+import { fetchClan, sortTable, updateClan } from '../actions';
+import ApiInfo from '../components/api_info';
 import _ from 'lodash';
 
 class ClanPage extends Component {
@@ -37,8 +38,14 @@ class ClanPage extends Component {
     );
   }
 
+  refreshClan() {
+    const { clan } = this.props;
+    this.props.updateClan(clan.clan_tag, clan.id);
+  }
+
   render() {
     const { auth } = this.props;
+    console.log(auth);
     if (!auth.authenticated) {
       this.props.history.push('/login');
     }
@@ -48,10 +55,26 @@ class ClanPage extends Component {
         <div className="container">{clan.error}</div>
       );
     }
+    if (!auth.user.api_key) {
+      return(
+        <ApiInfo />
+      );
+    }
     if (clan.clan_tag) {
+      const { inProgress } = this.props.clan;
+      const refreshButton = "btn btn-success glyphicon glyphicon-refresh";
+      const disabled = "btn btn-success glyphicon glyphicon-refresh disabled";
       return (
         <div className="container">
-          <h1>{clan.name}</h1>
+          <h1>
+            {clan.name}
+            <span className="pull-right">
+              <button 
+                className={inProgress ? disabled : refreshButton}
+                onClick={this.refreshClan.bind(this)} 
+              />
+            </span>
+          </h1>
           <h3>#{clan.clan_tag}</h3>
           <h4>Members: {clan.member_amount}</h4>
           <h4>Donations per week: {clan.donations_per_week}</h4>
@@ -89,4 +112,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { fetchClan, sortTable })(ClanPage);
+export default connect(mapStateToProps, { fetchClan, sortTable, updateClan })(ClanPage);

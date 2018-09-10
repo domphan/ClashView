@@ -3,6 +3,8 @@ import { GET_ERRORS, SET_USER } from '.';
 import setAuthToken from '../auth_token';
 import jwt_decode from 'jwt-decode';
 
+export const SET_KEY = 'set_key';
+export const ERROR_KEY = 'error_key';
 
 export const signupUser = (user, history) => dispatch => {
   axios.post('/api/users/signup', user)
@@ -44,4 +46,20 @@ export const logoutUser = history => dispatch => {
   setAuthToken(false);
   dispatch(setCurrentUser({}));
   history.push('/login');
+}
+
+export const assignKey = (user) => dispatch => {
+  axios.post('/api/users/api_key', user)
+    .then(res => {
+      dispatch({
+        type: SET_KEY,
+        payload: res
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: ERROR_KEY,
+        payload: err.response.data
+      });
+    });
 }

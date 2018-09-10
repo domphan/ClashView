@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/player';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 class SearchForm extends Component {
   constructor(props) {

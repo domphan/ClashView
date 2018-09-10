@@ -8,10 +8,10 @@ const ROOT_URL = "https://clashclantracker.appspot.com";
 
 export const fetchPlayer = (tag) => dispatch => {
   const request = axios.get(`${ROOT_URL}/players/${tag}`)
-    .then(() => {
+    .then(res => {
       dispatch({
         type: FETCH_PLAYER,
-        payload: request
+        payload: res
       })
     })
     .catch((error) => {
