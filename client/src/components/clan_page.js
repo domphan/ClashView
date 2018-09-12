@@ -6,6 +6,13 @@ import ApiInfo from '../components/api_info';
 import _ from 'lodash';
 
 class ClanPage extends Component {
+  componentWillMount() {
+    const { auth } = this.props;
+    if (!auth.authenticated) {
+      this.props.history.push('/login');
+    }
+  }
+
   componentDidMount() {
     if (this.props.clan.error === undefined) {
       this.props.fetchClan();
@@ -44,12 +51,7 @@ class ClanPage extends Component {
   }
 
   render() {
-    const { auth } = this.props;
-    console.log(auth);
-    if (!auth.authenticated) {
-      this.props.history.push('/login');
-    }
-    const { clan } = this.props;
+    const { auth, clan } = this.props;
     if (clan.error) {
       return(
         <div className="container">{clan.error}</div>

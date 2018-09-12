@@ -24,12 +24,15 @@ export const _checkLogin = () => {
       window.location.href = '/login';
       return false;
     }
+    return true;
   }
-  return true;
+  return false;
 }
 
 export const fetchClan = () => dispatch => {
-  _checkLogin();
+  if (!_checkLogin()) {
+    return;
+  }
   axios.get(
     `${ROOT_URL}/clans`,
     {headers: {
@@ -50,7 +53,9 @@ export const fetchClan = () => dispatch => {
 }
 
 export const updateClan = (clanTag, clan_id) => dispatch => {
-  _checkLogin();
+  if (!_checkLogin()) {
+    return;
+  }
   dispatch({ type: UPDATING_CLAN });
   const data = {
     "tag": clanTag,

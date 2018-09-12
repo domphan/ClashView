@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, SET_USER } from '.';
+import { GET_ERRORS, SET_USER, _checkLogin } from '.';
 import setAuthToken from '../auth_token';
 import jwt_decode from 'jwt-decode';
 
@@ -49,6 +49,9 @@ export const logoutUser = history => dispatch => {
 }
 
 export const assignKey = (user) => dispatch => {
+  if (!_checkLogin()) {
+    return;
+  }
   axios.post('/api/users/api_key', user)
     .then(res => {
       dispatch({
