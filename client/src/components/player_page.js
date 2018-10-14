@@ -35,12 +35,19 @@ class PlayerPage extends Component {
     }
     return (
       <div className="container">
-        <h1>{player.name}</h1>
-        <h2>{player.tag}</h2>
-        <h3>Trophies: {player.trophies}</h3>
-        <h3>Clan: {player.clan.name} <small>(#{player.clan.tag})</small></h3>
-        <h4>Games: {player.games.total}</h4>
-        <h5>Max challenge wins: {player.stats.challengeMaxWins}</h5>
+        <div className="row">
+          <div className="col-md-11">
+            <h1>{player.name}</h1>
+            <h2>{player.tag}</h2>
+            <h3>Trophies: {player.trophies}</h3>
+            <h3>Clan: {player.clan.name} <small>(#{player.clan.tag})</small></h3>
+            <h4>Games: {player.games.total}</h4>
+            <h5>Max challenge wins: {player.stats.challengeMaxWins}</h5>
+          </div>
+          <div className="col-md-1">
+            <button className="btn btn-primary">favorite</button>
+          </div>
+        </div>
       </div>
     );
   }
