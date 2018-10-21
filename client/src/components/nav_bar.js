@@ -23,23 +23,29 @@ class NavBar extends Component {
               Your Clan
             </NavItem>
           </LinkContainer>
-          <LinkContainer to="/players">
+          <LinkContainer to="/favorites">
             <NavItem eventKey={2}>
+              Favorited Players
+            </NavItem>
+          </LinkContainer>
+          <LinkContainer to="/players">
+            <NavItem eventKey={3}>
               Player Lookup
             </NavItem>
           </LinkContainer>
+
         </Nav>
         <Nav pullRight>
-          <NavDropdown eventKey={3} title={user.email ? user.email : ''} id="basic-nav-dropdown">
+          <NavDropdown eventKey={4} title={user.email ? user.email : ''} id="basic-nav-dropdown">
             <LinkContainer to="/account/api_key">
-              <MenuItem eventKey={3.1}>View API key</MenuItem>
+              <MenuItem eventKey={4.1}>View API key</MenuItem>
             </LinkContainer>
             <LinkContainer to="/account/info">
-              <MenuItem eventKey={3.2}>View Account Info</MenuItem>
+              <MenuItem eventKey={4.2}>View Account Info</MenuItem>
             </LinkContainer>
             <MenuItem divider />
             <LinkContainer to="/logout">
-              <MenuItem eventKey={3.4} onClick={this.onLogout.bind(this)}>Logout</MenuItem>
+              <MenuItem eventKey={4.4} onClick={this.onLogout.bind(this)}>Logout</MenuItem>
             </LinkContainer>
           </NavDropdown>
         </Nav>
@@ -50,8 +56,13 @@ class NavBar extends Component {
       <div>
         <Nav pullRight>
           <LinkContainer to="/login">
-            <NavItem eventKey={4}>
+            <NavItem eventKey={5}>
               Login
+            </NavItem>
+          </LinkContainer>
+          <LinkContainer to="/signup">
+            <NavItem eventKey={6}>
+              Sign Up
             </NavItem>
           </LinkContainer>
         </Nav>
