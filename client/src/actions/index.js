@@ -13,7 +13,7 @@ export const UPDATE_CLAN = 'update_clan';
 export const UPDATING_CLAN = 'updating_clan';
 
 const ROOT_URL = "https://clashclantracker.appspot.com";
-const API_KEY = "e26539e71e82d0c4564a09b1ff3cd11c";
+const API_KEY = "e26539e71e82d0c4564a09b1ff3cd11c"; // implement api key to change this
 
 export const _checkLogin = () => {
   if (localStorage.jwtToken) {

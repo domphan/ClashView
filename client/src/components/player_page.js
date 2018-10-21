@@ -45,7 +45,7 @@ class PlayerPage extends Component {
             <h5>Max challenge wins: {player.stats.challengeMaxWins}</h5>
           </div>
           <div className="col-md-1">
-            <button className="btn btn-primary">favorite</button>
+            <button className="btn btn-warning">&#x2606;</button>
           </div>
         </div>
       </div>
