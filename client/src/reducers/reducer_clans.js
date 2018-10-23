@@ -2,7 +2,6 @@ import { FETCH_CLAN, SORT_TABLE_DESC, SORT_TABLE_ASC, ERROR_CLAN, UPDATE_CLAN, U
 export default function(state = {}, action) {
   switch (action.type) {
     case FETCH_CLAN:
-      console.log("reducer fetch hit")
       return {...action.payload.data};
     case UPDATING_CLAN:
       return {
@@ -20,7 +19,6 @@ export default function(state = {}, action) {
     case SORT_TABLE_ASC:
       return action.payload;
     case ERROR_CLAN:
-      console.log("reducer error hit");
       return {...action.payload};
     default:
       return state;

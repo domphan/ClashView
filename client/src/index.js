@@ -14,6 +14,7 @@ import registerServiceWorker from './registerServiceWorker';
 import NavBar from './components/nav_bar';
 
 import reducers from './reducers';
+import FavoritePage from './components/favorite_players';
 import HomePage from './components/home_page';
 import LoginPage from './components/login_page';
 import SignupPage from './components/signup_page';
@@ -53,6 +54,7 @@ ReactDOM.render(
           <Route path="/account/api_key" component={DisplayPage} />
           <Route path="/players/:id" component={PlayerPage} />
           <Route path="/players" component={SearchForm} />
+          <Route path="/favorites" component={FavoritePage} />
           <Route path="/clan" component={ClanPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
