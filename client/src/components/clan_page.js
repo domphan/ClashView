@@ -77,11 +77,13 @@ class ClanPage extends Component {
               />
             </span>
           </h1>
+          <hr></hr>
           <h3>#{clan.clan_tag}</h3>
           <h4>Members: {clan.member_amount}</h4>
           <h4>Donations per week: {clan.donations_per_week}</h4>
           <h4>Weakest Link: {clan.weakest_link}</h4>
           <h4>Inactive members: {clan.inactive_members}</h4>
+          <hr></hr>
           <h1>Players</h1>
           <table className="table">
             <thead>

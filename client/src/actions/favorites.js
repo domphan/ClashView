@@ -30,3 +30,43 @@ export const fetchFavorites = (api_key) => dispatch => {
     })
 }
 
+export const addFavorite = (api_key, tag) => dispatch => {
+  if (!_checkLogin()) {
+    return;
+  }
+  const data = {
+    player_tag: tag
+  }
+  axios.post(
+    `${ROOT_URL}/favorites`,
+    data,
+    { headers: { "auth": api_key } })
+    .then(res => dispatch({
+      type: ADD_FAV,
+      payload: res
+    }))
+    .catch(error => {
+      dispatch({
+        type: ERROR_FAVS,
+        payload: { error: "cannot add to favorites" },
+      })
+    })
+  
+}
+
+export const removeFavorite = (api_key, tag) => dispatch => {
+  if (!_checkLogin()) {
+    return;
+  }
+  axios.delete(
+    `${ROOT_URL}/favorites/${tag}`,
+    { headers: { "auth": api_key } })
+  .then(res => dispatch({
+    type: REMOVE_FAV,
+    payload: { removedPlayer: tag }
+  }))
+  .catch(err => dispatch({
+    type: ERROR_FAVS,
+    payload: { error: "cannot delete favorite" },
+  }))
+}

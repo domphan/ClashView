@@ -6,6 +6,10 @@ import _ from 'lodash';
 
 class FavoritePage extends Component {
   componentWillMount() {
+    const { auth } = this.props;
+    if (!auth.authenticated) {
+      this.props.history.push('/login');
+    }
     if (this.props.favorites.error === undefined) {
       this.props.fetchFavorites(this.props.auth.user.api_key);
     }
@@ -20,12 +24,15 @@ class FavoritePage extends Component {
       );
     })
   }
+
   render() {
     return (
       <div className="container">
         <h1>Your Favorited Players</h1>
         <hr></hr>
-        {this.renderFavorites()}
+        <tbody>
+          {this.renderFavorites()}
+        </tbody>
       </div>
     );
   }

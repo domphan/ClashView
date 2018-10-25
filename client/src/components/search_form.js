@@ -31,6 +31,7 @@ class SearchForm extends Component {
     return(
       <div className="container">
         <h1>Player Lookup</h1>
+        <hr></hr>
         <br />
         <form onSubmit={this.handleSubmit}>
           <div className="form-group row">

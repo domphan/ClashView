@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { newSearch, fetchPlayer } from '../actions/player';
+import { addFavorite, fetchFavorites, removeFavorite } from '../actions/favorites';
 
 class PlayerPage extends Component {
   componentWillUnmount() {
@@ -8,15 +9,53 @@ class PlayerPage extends Component {
   }
   componentDidMount() {
     const { id } = this.props.match.params;
+    const { auth } = this.props;
     this.props.fetchPlayer(id)
+    this.props.fetchFavorites(auth.user.api_key)
   }
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       console.log("updated with: ");
       console.log(this.props.player);
+      console.log(this.checkIfFavorited())
       this.forceUpdate();
     }
   }
+  addFavPlayer() {
+    const { player, addFavorite, auth } = this.props;
+    addFavorite(auth.user.api_key, player.tag);
+  }
+
+  removeFavPlayer() {
+    const { player, removeFavorite, auth } = this.props;
+    removeFavorite(auth.user.api_key, player.tag);
+  }
+
+  checkIfFavorited() {
+    const { favorites, player } = this.props;
+    const favoritesArr = Object.values(favorites);
+    for (const value of favoritesArr) {
+      if (value === player.tag) {
+        return (
+          <button 
+          className="btn btn-danger"
+          onClick={this.removeFavPlayer.bind(this)}
+          >
+            Unfavorite
+          </button>
+        );
+      }
+    }
+    return (
+      <button
+        className="btn btn-warning"
+        onClick={this.addFavPlayer.bind(this)}
+      >
+        Add to favorites
+      </button>
+    );
+  }
+
   render() {
     const { player } = this.props;
     if (player.error) {
@@ -37,7 +76,7 @@ class PlayerPage extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-11">
-            <h1>{player.name}</h1>
+            <h1><strong>{player.name}</strong></h1>
             <h2>{player.tag}</h2>
             <h3>Trophies: {player.trophies}</h3>
             <h3>Clan: {player.clan.name} <small>(#{player.clan.tag})</small></h3>
@@ -45,7 +84,7 @@ class PlayerPage extends Component {
             <h5>Max challenge wins: {player.stats.challengeMaxWins}</h5>
           </div>
           <div className="col-md-1">
-            <button className="btn btn-warning">&#x2606;</button>
+            {this.checkIfFavorited()}
           </div>
         </div>
       </div>
@@ -56,7 +95,15 @@ class PlayerPage extends Component {
 const mapStateToProps = (state) => {
   return { 
     player: state.player,
+    auth: state.auth,
+    favorites: state.favorites
   }
 }
 
-export default connect(mapStateToProps, { newSearch, fetchPlayer })(PlayerPage);
+export default connect(mapStateToProps, { 
+  newSearch, 
+  fetchPlayer, 
+  addFavorite, 
+  fetchFavorites, 
+  removeFavorite 
+})(PlayerPage);
