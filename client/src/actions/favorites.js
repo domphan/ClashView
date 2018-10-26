@@ -67,6 +67,6 @@ export const removeFavorite = (api_key, tag) => dispatch => {
   }))
   .catch(err => dispatch({
     type: ERROR_FAVS,
-    payload: { error: "cannot delete favorite" },
+    payload: { error: "cannot remove favorite" },
   }))
 }

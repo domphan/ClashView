@@ -33,7 +33,7 @@ class PlayerPage extends Component {
 
   checkIfFavorited() {
     const { favorites, player } = this.props;
-    const favoritesArr = Object.values(favorites);
+    const favoritesArr = Object.keys(favorites);
     for (const value of favoritesArr) {
       if (value === player.tag) {
         return (
