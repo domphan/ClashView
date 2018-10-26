@@ -27,13 +27,16 @@ class FavoritePage extends Component {
   }
 
   render() {
-    const { error } = this.props.favorites;
+    const { favorites } = this.props
+    const { error } = favorites;
     return (
       <div className="container">
         <h1>Your Favorited Players</h1>
         <hr></hr>
         <div className="container">
           <div className="row">
+            {Object.keys(favorites).length === 0 && 
+              "Loading... this may take awhile"}
             {!error ? this.renderFavorites() : error}
           </div>
         </div>

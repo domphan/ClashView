@@ -61,7 +61,7 @@ class PlayerPage extends Component {
     if (player.error) {
       return(
         <div className="container">
-          {player.error}
+          {player.message}
         </div>
       );
     }
