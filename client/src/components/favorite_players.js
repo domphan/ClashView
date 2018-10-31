@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PlayerCard from './player_card';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import { fetchFavorites } from '../actions/favorites';
 
 
@@ -52,4 +53,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { fetchFavorites })(FavoritePage);
+export default connect(mapStateToProps, { fetchFavorites })(withRouter(FavoritePage));

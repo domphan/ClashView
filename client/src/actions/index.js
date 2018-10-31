@@ -11,9 +11,9 @@ export const SORT_TABLE_ASC = 'sort_table_asc'
 export const ERROR_CLAN = 'clan_error';
 export const UPDATE_CLAN = 'update_clan';
 export const UPDATING_CLAN = 'updating_clan';
+export const NEW_CLAN = 'new_clan';
 
 const ROOT_URL = "https://clashclantracker.appspot.com";
-const API_KEY = "e26539e71e82d0c4564a09b1ff3cd11c"; // implement api key to change this
 
 export const _checkLogin = () => {
   if (localStorage.jwtToken) {
@@ -29,14 +29,14 @@ export const _checkLogin = () => {
   return false;
 }
 
-export const fetchClan = () => dispatch => {
+export const fetchClan = (api_key) => dispatch => {
   if (!_checkLogin()) {
     return;
   }
   axios.get(
     `${ROOT_URL}/clans`,
     {headers: {
-      "auth": API_KEY
+      "auth": api_key
     }})
     .then(res => {
       dispatch({
@@ -52,7 +52,7 @@ export const fetchClan = () => dispatch => {
     })
 }
 
-export const updateClan = (clanTag, clan_id) => dispatch => {
+export const updateClan = (clanTag, clan_id, api_key) => dispatch => {
   if (!_checkLogin()) {
     return;
   }
@@ -63,7 +63,7 @@ export const updateClan = (clanTag, clan_id) => dispatch => {
   axios.put(
     `${ROOT_URL}/clans/${clan_id}`,
     data,
-    { headers: { "auth": API_KEY }}
+    { headers: { "auth": api_key }}
   )
     .then(res => {
       dispatch({
@@ -91,4 +91,32 @@ export const sortTable = (data, key, direction) => {
     type: SORT_TABLE_DESC,
     payload: newObj,
   }
+}
+
+export const addClan = (clanTag, api_key) => dispatch => {
+  if (clanTag.length < 5) {
+    dispatch({
+      type: ERROR_CLAN,
+      payload: { error: "invalid clan tag" }
+    });
+  }
+  const data = {
+    tag: clanTag,
+  }
+  axios.post(
+    `${ROOT_URL}/clans`,
+    data,
+    { headers: { auth: api_key }})
+    .then(res => {
+      dispatch({
+        type: NEW_CLAN,
+        payload: res
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: ERROR_CLAN,
+        payload: { error: error.response.data }
+      })
+    })
 }

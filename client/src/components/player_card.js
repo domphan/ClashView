@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const imgStyle = {
@@ -10,10 +11,12 @@ const PlayerCard = (props) => {
   const { player } = props;
   return(
     <div className="card" style={{ width: "18rem" }}>
-      <small><em>#{player.tag}</em></small>
+      <p>
+        <small><em>#{player.tag}</em></small>
+      </p>
       <img className="card-img-top" src={("clan" in player) ? player.clan.badge.image : "..."} alt="Error loading" />
       <div className="card-body">
-        <h3 className="card-title">{player.name}</h3>
+        <h3 className="card-title"><Link to={`/players/${player.tag}`}>{player.name}</Link></h3>
         <div className="card-text">
           <p>
             <strong>{player.clan.name}</strong>
@@ -26,6 +29,9 @@ const PlayerCard = (props) => {
           </p>
           <p>
             <strong>{player.stats.challengeMaxWins}</strong> Challenge Wins
+          </p>
+          <p>
+            <strong>{player.games.warDayWins}</strong> War Day Wins
           </p>
         </div>
       </div>

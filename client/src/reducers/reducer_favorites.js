@@ -6,7 +6,10 @@ export default function(state={}, action) {
     case FETCH_FAVS:
       return {...action.payload.data};
     case ADD_FAV:
-      return {...state};
+      return {
+        ...action.payload.pop(),
+        ...state
+      }; // TODO: fetch data on value change
     case REMOVE_FAV:
       return _.omit(state, action.payload.removedPlayer);
     case ERROR_FAVS:

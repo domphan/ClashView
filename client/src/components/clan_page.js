@@ -15,8 +15,15 @@ class ClanPage extends Component {
 
   componentDidMount() {
     if (this.props.clan.error === undefined) {
-      this.props.fetchClan();
+      const { auth } = this.props;
+      if (auth.user.api_key) {
+        this.props.fetchClan(auth.user.api_key);
+      }
     }
+  }
+
+  componentDidUpdate() {
+    // Need to handle internal state change
   }
 
   renderPlayers() {
@@ -46,8 +53,8 @@ class ClanPage extends Component {
   }
 
   refreshClan() {
-    const { clan } = this.props;
-    this.props.updateClan(clan.clan_tag, clan.id);
+    const { clan, auth } = this.props;
+    this.props.updateClan(clan.clan_tag, clan.id, auth.user.api_key);
   }
 
   render() {

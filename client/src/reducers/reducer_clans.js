@@ -1,8 +1,11 @@
-import { FETCH_CLAN, SORT_TABLE_DESC, SORT_TABLE_ASC, ERROR_CLAN, UPDATE_CLAN, UPDATING_CLAN } from '../actions';
+import { FETCH_CLAN, SORT_TABLE_DESC, SORT_TABLE_ASC, ERROR_CLAN, UPDATE_CLAN, UPDATING_CLAN, NEW_CLAN } from '../actions';
 export default function(state = {}, action) {
   switch (action.type) {
     // Reduces clan data to view
     case FETCH_CLAN:
+      if (Object.keys(action.payload.data).length === 0) {
+        return { error: "no clan" };
+      }
       return {...action.payload.data};
     // fired off to let the user know their data is processing
     case UPDATING_CLAN:
@@ -17,6 +20,9 @@ export default function(state = {}, action) {
         inProgress: false,
         ...action.payload.data
       };
+    // Add clan to api key account
+    case NEW_CLAN:
+      return {...action.payload.data};
     // table sorting
     case SORT_TABLE_DESC:
       return action.payload;

@@ -9,9 +9,11 @@ class PlayerPage extends Component {
   }
   componentDidMount() {
     const { id } = this.props.match.params;
-    const { auth } = this.props;
+    const { auth, favorites } = this.props;
     this.props.fetchPlayer(id)
-    this.props.fetchFavorites(auth.user.api_key)
+    if (Object.keys(favorites).length === 0) {
+      this.props.fetchFavorites(auth.user.api_key)
+    }
   }
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -50,8 +52,9 @@ class PlayerPage extends Component {
       <button
         className="btn btn-warning"
         onClick={this.addFavPlayer.bind(this)}
+        disabled={Object.keys(favorites).length === 0 ? true : false}
       >
-        Add to favorites
+        {Object.keys(favorites).length === 0 ? "Loading favorites" : "Add to favorites"}
       </button>
     );
   }
