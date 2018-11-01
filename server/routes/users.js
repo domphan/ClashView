@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const validateSignupInput = require('../validation/signup');
 const validateLoginInput = require('../validation/login');
+const isEmpty = require('../validation/is_empty');
 const User = require('../models/User');
 
 const router = express.Router();
@@ -75,6 +76,7 @@ router.post('/login', (req, res) => {
             const payload = {
               id: user.id,
               email: user.email,
+              api_key: user.api_key,
             };
             jwt.sign(payload, 'secret', {
               expiresIn: 3600,
@@ -104,7 +106,39 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 router.post('/api_key', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.status(200).json({ key: req.body.api_key });
+  const { key, user_id } = req.body;
+  if (isEmpty(key)) {
+    res.status(400).json({ error: 'empty key' });
+  }
+  User.findById(user_id, (err, doc) => {
+    if (err) {
+      res.status(200).json(err);
+    }
+    doc.api_key = key;
+    doc.save().then(() => {
+      const payload = {
+        id: doc.id,
+        email: doc.email,
+        api_key: doc.api_key,
+      };
+      jwt.sign(payload, 'secret', {
+        expiresIn: 3600,
+      }, (error, token) => {
+        if (error) console.error(`TOKEN ERROR: ${error}`);
+        else {
+          res.json({
+            success: true,
+            token: `Bearer ${token}`,
+          });
+        }
+      });
+    });
+  });
 });
+
+router.get('/favorite_players', passport.authenticate('jwt', { session: false }), (req, res) => {
+  
+})
+
 
 module.exports = router;

@@ -1,3 +1,4 @@
+// TODO: Implement starred player feature.
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
