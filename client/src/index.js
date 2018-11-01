@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
-import registerServiceWorker from './registerServiceWorker';
 import NavBar from './components/nav_bar';
 
 import reducers from './reducers';
@@ -65,4 +64,3 @@ ReactDOM.render(
     </BrowserRouter>
   </Provider>
   , document.getElementById('root'));
-registerServiceWorker();

@@ -54,10 +54,11 @@ export const assignKey = (user) => dispatch => {
   }
   axios.post('/api/users/api_key', user)
     .then(res => {
-      dispatch({
-        type: SET_KEY,
-        payload: res
-      });
+      const { token } = res.data;
+      localStorage.setItem('jwtToken', token);
+      setAuthToken(token);
+      const decodedToken = jwt_decode(token);
+      dispatch(setCurrentUser(decodedToken));
     })
     .catch(err => {
       dispatch({
