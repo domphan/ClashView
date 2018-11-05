@@ -7,14 +7,13 @@ export default function(state={}, action) {
       return {...action.payload.data};
     case ADD_FAV:
       return {
-        ...action.payload.pop(),
-        ...state
-      }; // TODO: fetch data on value change
+        "refetch": true
+      };
     case REMOVE_FAV:
       return _.omit(state, action.payload.removedPlayer);
     case ERROR_FAVS:
       return {...action.payload};
     default:
-    return state;
+      return state;
   }
 }

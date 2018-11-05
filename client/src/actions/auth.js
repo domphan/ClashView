@@ -2,6 +2,7 @@ import axios from 'axios';
 import { GET_ERRORS, SET_USER, _checkLogin } from '.';
 import setAuthToken from '../auth_token';
 import jwt_decode from 'jwt-decode';
+import { fetchFavorites } from './favorites';
 
 export const SET_KEY = 'set_key';
 export const ERROR_KEY = 'error_key';
@@ -25,6 +26,7 @@ export const loginUser = (user) => dispatch => {
       setAuthToken(token);
       const decodedToken = jwt_decode(token);
       dispatch(setCurrentUser(decodedToken));
+      dispatch(fetchFavorites(decodedToken.api_key))
     })
     .catch(err => {
       dispatch({

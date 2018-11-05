@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+
+
 class NavBar extends Component {
   onLogout(event) {
     event.preventDefault();
@@ -17,7 +19,7 @@ class NavBar extends Component {
     const { authenticated, user } = this.props.auth;
     const authenticatedElements = (
       <div>
-        <Nav pullLeft>
+        <Nav>
           <LinkContainer to="/clan">
             <NavItem eventKey={1}>
               Your Clan
@@ -70,13 +72,17 @@ class NavBar extends Component {
     );
 
     return(
-      <Navbar>
-        <Navbar.Header>
+      <Navbar collapseOnSelect>
+        <Navbar.Header className="navbar-custom">
           <Navbar.Brand>
             <Link to="/">Clash Clan Tracker</Link>
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
-        {authenticated ? authenticatedElements : notAuthenticated}
+        <Navbar.Collapse>
+          {authenticated ? authenticatedElements : notAuthenticated}
+        </Navbar.Collapse>
+
       </Navbar>
     );
   }

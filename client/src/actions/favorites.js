@@ -43,7 +43,7 @@ export const addFavorite = (api_key, tag) => dispatch => {
     { headers: { "auth": api_key } })
     .then(res => dispatch({
       type: ADD_FAV,
-      payload: res
+      payload: res.data.pop()
     }))
     .catch(error => {
       dispatch({

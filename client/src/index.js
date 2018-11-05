@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import React from 'react';
@@ -21,7 +22,6 @@ import PlayerPage from './components/player_page';
 import ClanPage from './components/clan_page';
 import setAuthToken from './auth_token';
 import { setCurrentUser, logoutUser } from './actions/auth';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchForm from './components/search_form';
 import DisplayPage from './components/display_page';
 

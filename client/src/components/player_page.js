@@ -34,8 +34,20 @@ class PlayerPage extends Component {
   }
 
   checkIfFavorited() {
-    const { favorites, player } = this.props;
+    const { favorites, player, auth } = this.props;
     const favoritesArr = Object.keys(favorites);
+    if (favorites.refetch) {
+      this.props.fetchFavorites(auth.user.api_key);
+      return(
+        <button
+          className="btn btn-warning"
+          disabled
+        >
+          Adding to favorites
+        </button>
+      );
+    }
+
     for (const value of favoritesArr) {
       if (value === player.tag) {
         return (
@@ -81,10 +93,13 @@ class PlayerPage extends Component {
           <div className="col-md-11">
             <h1><strong>{player.name}</strong></h1>
             <h2>{player.tag}</h2>
-            <h3>Trophies: {player.trophies}</h3>
+            <h3>Trophies: {player.trophies} {player.arena.name}</h3>
             <h3>Clan: {player.clan.name} <small>(#{player.clan.tag})</small></h3>
             <h4>Games: {player.games.total}</h4>
             <h5>Max challenge wins: {player.stats.challengeMaxWins}</h5>
+            <h5>Total Donations: {player.stats.totalDonations}</h5>
+            <h4>War day wins: {player.games.warDayWins}</h4>
+            <h4>W/L/D: {player.games.winsPercent}/{player.games.lossesPercent}/{player.games.drawsPercent}</h4>
           </div>
           <div className="col-md-1">
             {this.checkIfFavorited()}
