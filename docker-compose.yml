@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.2'
 services:
     mongodb:
         image: mongo
@@ -13,7 +13,9 @@ services:
         ports:
             - '3001:3001'
         volumes:
+            # use everything in /server for /app/
             - './server:/usr/src/app/'
+            # use node_modules from app
             - '/usr/src/app/node_modules'
         depends_on:
             - mongodb
