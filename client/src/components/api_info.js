@@ -6,7 +6,7 @@ const ApiInfo = () => {
     <div className="container">
       <h1>You have not registered an API key yet</h1>
       <p>
-        Please create one at <a href="https://www.clashclantracker.appspot.com">https://www.clashclantracker.appspot.com</a> and save it.
+        Please create one at <a href="www.clashclantracker.appspot.com">www.clashclantracker.appspot.com</a> and save it.
       </p>
       <ApiKey />
     </div>

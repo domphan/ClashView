@@ -136,9 +136,5 @@ router.post('/api_key', passport.authenticate('jwt', { session: false }), (req, 
   });
 });
 
-router.get('/favorite_players', passport.authenticate('jwt', { session: false }), (req, res) => {
-  
-})
-
 
 module.exports = router;

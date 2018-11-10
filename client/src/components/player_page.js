@@ -33,9 +33,13 @@ class PlayerPage extends Component {
     removeFavorite(auth.user.api_key, player.tag);
   }
 
+  // This function handles the favorite button feature
+  // Will conditionally render buttons according to 3 states:
+  // Loading, Adding, or Loaded
   checkIfFavorited() {
     const { favorites, player, auth } = this.props;
     const favoritesArr = Object.keys(favorites);
+    // Check if player is being favorite and fetch new favorites
     if (favorites.refetch) {
       this.props.fetchFavorites(auth.user.api_key);
       return(
@@ -47,7 +51,8 @@ class PlayerPage extends Component {
         </button>
       );
     }
-
+    // Check if the current player is favorited or not
+    // Return the unfavorite button if they are
     for (const value of favoritesArr) {
       if (value === player.tag) {
         return (
@@ -60,6 +65,8 @@ class PlayerPage extends Component {
         );
       }
     }
+    // Return the add to favorites button if the player is not favorited
+    // and that favorites were completely fetched.
     return (
       <button
         className="btn btn-warning"
