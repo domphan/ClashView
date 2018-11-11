@@ -9,7 +9,7 @@ services:
         container_name: cct_backend
         build:
             context: .
-            dockerfile: ./server/Dockerfile
+            dockerfile: ./server/gcloud.Dockerfile
         ports:
             - '3001:3001'
         volumes:
@@ -26,7 +26,7 @@ services:
         container_name: cct_frontend
         build:
             context: .
-            dockerfile: ./client/Dockerfile
+            dockerfile: ./client/gcloud.Dockerfile
         volumes:
             - './client:/usr/src/app'
             - '/usr/src/app/node_modules'
