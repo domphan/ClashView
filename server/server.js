@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -8,6 +9,7 @@ const config = require('./db');
 
 const app = express();
 const port = process.env.PORT || '3001';
+
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => { console.log('Database is connected'); },
@@ -21,6 +23,12 @@ app.use(bodyParser.json());
 app.use('/users', usersRoute);
 
 app.use('/api/users', usersRoute);
+
+// Run optimized react front-end build
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.use((req, res) => {
   res.status(404);

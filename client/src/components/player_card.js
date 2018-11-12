@@ -14,12 +14,12 @@ const PlayerCard = (props) => {
       <p>
         <small><em>#{player.tag}</em></small>
       </p>
-      <img className="card-img-top" src={("clan" in player) ? player.clan.badge.image : "..."} alt="Error loading" />
+      <img className="card-img-top" src={_clanIsEmpty(player) ? "..." : player.clan.badge.image} alt="No Clan" />
       <div className="card-body">
         <h3 className="card-title"><Link to={`/players/${player.tag}`}>{player.name}</Link></h3>
         <div className="card-text">
           <p>
-            <strong>{player.clan.name}</strong>
+            <strong>{_clanIsEmpty(player) ? "No Clan" : player.clan.name}</strong>
           </p>
           <p>
             <strong>{player.trophies}</strong> trophies
@@ -68,6 +68,12 @@ const PlayerCard = (props) => {
       <br />
     </div>
   );
+}
+const _clanIsEmpty = (player) => {
+  if (player.clan === null) {
+    return true;
+  }
+  return false;
 }
 
 export default PlayerCard;
