@@ -35,7 +35,7 @@ class Form extends Component {
               type="submit"
               className="btn btn-primary"
             >
-              Save
+              {this.props.btnText}
           </button>
           </div>
         </div>
@@ -43,3 +43,5 @@ class Form extends Component {
     );
   }
 }
+
+export default Form;
