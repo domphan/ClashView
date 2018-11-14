@@ -6,7 +6,7 @@ import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import promise from 'redux-promise';
@@ -28,8 +28,7 @@ import DisplayPage from './components/display_page';
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 const store = createStoreWithMiddleware(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  reducers
 );
 
 if (localStorage.jwtToken) {

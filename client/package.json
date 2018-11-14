@@ -8,6 +8,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-css": "^3.3.7",
     "classnames": "^2.2.6",
+    "informed": "^1.10.8",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
     "passport-local": "^1.0.0",

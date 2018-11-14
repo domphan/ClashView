@@ -11,10 +11,11 @@ const app = express();
 const port = process.env.PORT || '3001';
 
 
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-  () => { console.log('Database is connected'); },
-  err => console.log(`Can not connect to the database: ${err}`)
-);
+mongoose.connect(config.DB, { useNewUrlParser: true })
+  .then(
+    () => { console.log('Database is connected'); },
+    err => console.log(`Can not connect to the database: ${err}`),
+  );
 require('./passport')(passport);
 
 app.use(morgan('tiny'));

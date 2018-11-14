@@ -6,7 +6,7 @@ class HomePage extends Component {
   state = { user: {} };
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/users/me')
+    axios.get('/api/users/me')
       .then((res) => this.setState({ user: res.data }))
       .catch((error) => {
         if (error.response) {
