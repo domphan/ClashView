@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchClan, sortTable, updateClan } from '../actions';
 import ApiInfo from '../components/api_info';
+import ClanForm from '../components/clan_form';
 import _ from 'lodash';
 
 class ClanPage extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editting: false,
+    };
+  }
+   componentWillMount() {
     const { auth } = this.props;
     if (!auth.authenticated) {
       this.props.history.push('/login');
@@ -23,7 +30,7 @@ class ClanPage extends Component {
   }
 
   componentDidUpdate() {
-    // Need to handle internal state change
+
   }
 
   renderPlayers() {
@@ -57,9 +64,38 @@ class ClanPage extends Component {
     this.props.updateClan(clan.clan_tag, clan.id, auth.user.api_key);
   }
 
+  editClan() {
+    this.setState({ 
+      editting: true,
+    });
+  }
+
+  renderEdit() {
+    const editButton = "btn btn-warning glyphicon glyphicon-edit";
+    if (this.state.editting) {
+      return (
+        <span className="pull-left">
+          <ClanForm />
+        </span>
+      );
+    } else {
+      return (
+        <button
+          className={editButton}
+          onClick={this.editClan.bind(this)}
+        />
+      );
+    }
+  }
+
   render() {
     const { auth, clan } = this.props;
     if (clan.error) {
+      if (clan.error === "no clan") {
+        return (
+          <ClanForm />
+        );
+      }
       return(
         <div className="container">{clan.error}</div>
       );
@@ -78,9 +114,11 @@ class ClanPage extends Component {
           <h1>
             {clan.name}
             <span className="pull-right">
-              <button 
+              {this.renderEdit()}
+              <span> </span>
+              <button
                 className={inProgress ? disabled : refreshButton}
-                onClick={this.refreshClan.bind(this)} 
+                onClick={this.refreshClan.bind(this)}
               />
             </span>
           </h1>

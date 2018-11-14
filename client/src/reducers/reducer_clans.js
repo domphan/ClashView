@@ -4,7 +4,7 @@ export default function(state = {}, action) {
     // Reduces clan data to view
     case FETCH_CLAN:
       if (Object.keys(action.payload.data).length === 0) {
-        return { error: "no clan created" };
+        return { error: "no clan" };
       }
       return {...action.payload.data};
     // fired off to let the user know their data is processing
