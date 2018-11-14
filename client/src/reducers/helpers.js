@@ -1,6 +1,6 @@
 const compareKeysDesc = (key) => (a,b) => {
-  if (a[key].toUpperCase() < b[key].toUpperCase()) return -1;
-  if (a[key].toUpperCase() > b[key].toUpperCase()) return 1;
+  if (a[key] < b[key]) return -1;
+  if (a[key] > b[key]) return 1;
   return 0;
 };
 
@@ -12,8 +12,8 @@ export const sortByDesc = (data, key) => {
 }
 
 const compareKeysAsc = (key) => (a, b) => {
-  if (a[key].toUpperCase() > b[key].toUpperCase()) return -1;
-  if (a[key].toUpperCase() < b[key].toUpperCase()) return 1;
+  if (a[key] > b[key]) return -1;
+  if (a[key] < b[key]) return 1;
   return 0;
 };
 
