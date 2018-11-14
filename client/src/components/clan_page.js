@@ -29,8 +29,12 @@ class ClanPage extends Component {
     }
   }
 
-  componentDidUpdate() {
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.clan.clan_tag !== this.props.clan.clan_tag) {
+      this.setState({
+        editting: false,
+      });
+    }
   }
 
   renderPlayers() {
