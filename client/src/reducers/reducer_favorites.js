@@ -4,7 +4,10 @@ import _ from 'lodash';
 export default function(state={}, action) {
   switch (action.type) {
     case FETCH_FAVS:
-      return {...action.payload.data};
+      return {
+        ...action.payload.data,
+        status: action.payload.status
+      };
     case ADD_FAV:
       return {
         "refetch": true

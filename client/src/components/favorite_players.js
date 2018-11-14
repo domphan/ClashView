@@ -19,6 +19,9 @@ class FavoritePage extends Component {
   renderFavorites() {
     const { favorites } = this.props;
     return Object.keys(favorites).map(item => {
+      if (item === "status") {
+        return null;
+      }
       return (
         <div className="col-md-3">
           <PlayerCard player={favorites[item]} />
@@ -38,6 +41,7 @@ class FavoritePage extends Component {
           <div className="row">
             {Object.keys(favorites).length === 0 && 
               "Loading... this may take awhile"}
+            {favorites.status === 200 && emptyMessage}
             {!error ? this.renderFavorites() : error}
           </div>
         </div>
@@ -45,7 +49,7 @@ class FavoritePage extends Component {
     );
   }
 }
-
+const emptyMessage = "You have no favorites, why don't you view some players and add some?";
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorites,

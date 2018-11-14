@@ -28,7 +28,8 @@ import DisplayPage from './components/display_page';
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 const store = createStoreWithMiddleware(
-  reducers
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 if (localStorage.jwtToken) {
