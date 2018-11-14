@@ -41,7 +41,7 @@ class FavoritePage extends Component {
           <div className="row">
             {Object.keys(favorites).length === 0 && 
               "Loading... this may take awhile"}
-            {favorites.status === 200 && emptyMessage}
+            {favorites.status === 200 && Object.keys(favorites).length === 1 && emptyMessage}
             {!error ? this.renderFavorites() : error}
           </div>
         </div>

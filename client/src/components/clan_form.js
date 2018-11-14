@@ -7,6 +7,9 @@ import { addClan } from '../actions';
 class ClanForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      submitting: false,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setFormApi = this.setFormApi.bind(this);
   }
@@ -17,7 +20,7 @@ class ClanForm extends Component {
   handleSubmit() {
     const { api_key } = this.props.auth.user;
     this.props.addClan(this.formApi.getState().values.tag, api_key);
-
+    this.setState({ submitting: true });
   }
   
   render() {
@@ -32,8 +35,9 @@ class ClanForm extends Component {
         <button
           className="btn btn-primary"
           type="submit"
+          disabled={this.state.submitting ? true : false}
         >
-          Submit
+          {this.state.submitting ? "submitting" : "submit"}
         </button>
       </Form>
     );

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchClan, sortTable, updateClan } from '../actions';
 import ApiInfo from '../components/api_info';
 import ClanForm from '../components/clan_form';
+import PlayerTable from '../components/player_table';
 import _ from 'lodash';
 
 class ClanPage extends Component {
@@ -30,37 +31,15 @@ class ClanPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { auth } = this.props;
     if (prevProps.clan.clan_tag !== this.props.clan.clan_tag) {
       this.setState({
         editting: false,
       });
     }
-  }
-
-  renderPlayers() {
-    const { members } = this.props.clan;
-    let i = 1;
-    return _.map(members, member => {
-      return (
-        <tr key={member.tag}>
-          <th scope="row">{i++}</th>
-          <td><Link to={`/players/${member.tag}`}>{member.name}</Link></td>
-          <td>{member.tag}</td>
-          <td>{member.trophies}</td>
-          <td>{member.donations}</td>
-          <td>{member.donations_delta}</td>
-        </tr>
-      );
-    });
-  }
-  renderHeaders(clan, title, header) {
-    return(
-      <th scope="col">
-        <span className="sortSymbols" onClick={() => this.props.sortTable(clan, header, false)}><big>↿</big></span>
-        {title}
-        <span className="sortSymbols" onClick={() => this.props.sortTable(clan, header, true)}><big>⇂</big></span>
-      </th>
-    );
+    if (prevProps.auth.user.api_key !== auth.user.api_key) {
+      this.props.fetchClan(auth.user.api_key);
+    }
   }
 
   refreshClan() {
@@ -97,7 +76,10 @@ class ClanPage extends Component {
     if (clan.error) {
       if (clan.error === "no clan") {
         return (
-          <ClanForm />
+          <div className="container">
+            <h3>It looks like you haven't added a clan. Add a clan using their clan tag here:</h3>
+            <ClanForm />
+          </div>
         );
       }
       return(
@@ -133,22 +115,7 @@ class ClanPage extends Component {
           <h4>Weakest Link: {clan.weakest_link}</h4>
           <h4>Inactive members: {clan.inactive_members}</h4>
           <hr></hr>
-          <h1>Players</h1>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                {this.renderHeaders(clan, "Name", "name")}
-                {this.renderHeaders(clan, "Tag", "tag")}
-                {this.renderHeaders(clan, "Trophies", "trophies")}
-                {this.renderHeaders(clan, "Donations", "donations")}
-                {this.renderHeaders(clan, "Donations Delta", "donations_delta")}
-              </tr>
-            </thead>
-            <tbody>
-              {this.renderPlayers()}
-            </tbody>
-          </table>
+          <PlayerTable />
         </div>
       );
     }
