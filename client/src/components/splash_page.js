@@ -47,9 +47,16 @@ const SplashPage = () => {
     <div>
       <div className="container" style={splashStyle} />
       <div style={containerStyle}>
-        <h1 style={textStyle}>Manage All Things Clash-related</h1>
+        <h1 style={textStyle}>Manage All Things Clash-Related</h1>
         <div className='container' style={CardsStyle}>
           <div className='row' style={rowStyle}>
+            <div className='col-sm-3' style={colStyle}>
+              <DisplayCard
+                title="View Your Clan Metrics"
+                text="Track your clanmates and see who's performing or underperforming"
+                image={metricsPic}
+              />
+            </div>
             <div className='col-sm-3' style={colStyle}>
               <DisplayCard
                 title="Look up Players"
@@ -60,16 +67,9 @@ const SplashPage = () => {
             </div>
             <div className='col-sm-3' style={colStyle}>
               <DisplayCard
-                title="Track Players"
+                title="Keep Track of Specific Players"
                 text="Keep track of all your favorite players by adding them to your favorites"
                 image={favoritesPic}
-              />
-            </div>
-            <div className='col-sm-3' style={colStyle}>
-              <DisplayCard
-                title="View Your Clan Metrics"
-                text="Track your clanmates and see who's performing or underperforming"
-                image={metricsPic}
               />
             </div>
             <div className='col-sm-3' style={colStyle}>

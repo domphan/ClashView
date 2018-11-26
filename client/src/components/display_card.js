@@ -11,7 +11,7 @@ const cardStyle = {
 }
 
 const imgStyle = {
-  maxHeight: "25rem"
+  maxHeight: "16rem"
 }
 
 const optionalImage = (imageSrc) => {
