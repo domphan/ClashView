@@ -1,7 +1,7 @@
 import React from 'react';
 import ApiKey from './api_key_form';
 
-const DisplayPage = () => {
+const ApiPage = () => {
   return(
     <div className="container">
       <ApiKey />
@@ -9,4 +9,4 @@ const DisplayPage = () => {
   );
 }
 
-export default DisplayPage;
+export default ApiPage;

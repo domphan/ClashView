@@ -23,7 +23,8 @@ import ClanPage from './components/clan_page';
 import setAuthToken from './auth_token';
 import { setCurrentUser, logoutUser } from './actions/auth';
 import SearchForm from './components/search_form';
-import DisplayPage from './components/display_page';
+import ApiPage from './components/api_page';
+import SplashPage from './components/splash_page';
 
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
@@ -50,14 +51,15 @@ ReactDOM.render(
       <div>
         <NavBar />
         <Switch>
-          <Route path="/account/api_key" component={DisplayPage} />
+          <Route path="/account/info" component={HomePage} />
+          <Route path="/account/api_key" component={ApiPage} />
           <Route path="/players/:id" component={PlayerPage} />
           <Route path="/players" component={SearchForm} />
           <Route path="/favorites" component={FavoritePage} />
           <Route path="/clan" component={ClanPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/" component={HomePage} />
+          <Route path="/" component={SplashPage} />
         </Switch>
       </div>
 

@@ -27,7 +27,7 @@ class ClanForm extends Component {
     return(
       <Form className="form-inline" id="add-clan-form" onSubmit={this.handleSubmit} getApi={this.setFormApi}>
         <Text
-          initialValue={this.props.auth.user.api_key}
+          initialValue={this.props.clan.clan_tag}
           className="form-control"
           field="tag" id="clan-tag"
           validate={validate}

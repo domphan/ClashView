@@ -44,3 +44,15 @@
 body {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
+nav.navbar {
+  margin-bottom: 0;
+}
+/* .navbar,
+.navbar-default{
+    background-image: linear-gradient(to bottom,#5296d5 0,#5296d5 100%);
+    color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav>li>a {
+  color: white;
+} */
