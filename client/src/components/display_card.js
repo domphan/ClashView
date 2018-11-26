@@ -1,16 +1,17 @@
 import React from 'react';
 
 const cardStyle = {
-  width: "25rem",
+  position: 'relative',
+  minHeight: "100%",
   color: 'white',
   backgroundColor: 'rgba(119, 101, 184, 0.7)',
   borderStyle: 'solid',
   borderColor: 'rgba(119, 101, 184, 0.7)',
-  borderRadius: '10px'
+  borderRadius: '10px',
 }
 
 const imgStyle = {
-  width: "180px"
+  maxHeight: "25rem"
 }
 
 const optionalImage = (imageSrc) => {

@@ -80,7 +80,7 @@ class NavBar extends Component {
           <Navbar.Brand>
             <Link to="/">
               <img src={brand} alt="brand" style={imgStyle} />
-              Clash Clan Manager
+              Clash Royale Manager
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle />

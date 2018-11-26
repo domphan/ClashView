@@ -48,10 +48,12 @@ body {
 nav.navbar {
   margin-bottom: 0;
 }
+
 .navbar,
 .navbar-default{
     background-image: linear-gradient(to bottom,rgb(167, 149, 235) 0,rgba(169, 149, 240, 0.75) 100%);
     color: rgb(255, 255, 255);
+    border-radius: 0;
 }
 .navbar-default .navbar-nav>li>a {
   color: white;
