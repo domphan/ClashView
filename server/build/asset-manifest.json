@@ -1,11 +1,17 @@
 {
-  "main.css": "static/css/main.1c255d1f.css",
-  "main.css.map": "static/css/main.1c255d1f.css.map",
-  "main.js": "static/js/main.60c3faa2.js",
-  "main.js.map": "static/js/main.60c3faa2.js.map",
+  "main.css": "static/css/main.a6361bf2.css",
+  "main.css.map": "static/css/main.a6361bf2.css.map",
+  "main.js": "static/js/main.fea636a6.js",
+  "main.js.map": "static/js/main.fea636a6.js.map",
+  "static/media/barb_knight.png": "static/media/barb_knight.b481dbce.png",
   "static/media/glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
   "static/media/glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.89889688.svg",
   "static/media/glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
   "static/media/glyphicons-halflings-regular.woff": "static/media/glyphicons-halflings-regular.fa277232.woff",
-  "static/media/glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2"
+  "static/media/glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2",
+  "static/media/king_mad.png": "static/media/king_mad.e3988907.png",
+  "static/media/knight_skeles.png": "static/media/knight_skeles.2411a87d.png",
+  "static/media/prince_wave.png": "static/media/prince_wave.f955fc3d.png",
+  "static/media/three_crowns.png": "static/media/three_crowns.187d20d2.png",
+  "static/media/wallpaper.jpg": "static/media/wallpaper.bc2280a4.jpg"
 }

@@ -1,5 +1,10 @@
 import React from 'react';
-let wallpaper = require('../assets/wallpaper.jpg');
+import DisplayCard from './display_card';
+const wallpaper = require('../assets/wallpaper.jpg');
+const metricsPic = require('../assets/king_mad.png');
+const playersPic = require('../assets/barb_knight.png');
+const favoritesPic = require('../assets/knight_skeles.png');
+const accountPic = require('../assets/prince_wave.png');
 
 const splashStyle = {
   padding: 0,
@@ -15,22 +20,58 @@ const splashStyle = {
 
 const textStyle = {
   fontSize: '64px',
-  textShadow: '2px 2px 0px black, 2px 2px 0px black, 2px 2px 0px black, 2px 2px 0px black',
+  textShadow: '-1px -1px 0px grey, 1px -1px 0px grey, -1px 1px 0px grey, 1px 1px 0px grey',
+  color: 'white'
 }
 const containerStyle = {
-  color: 'white',
   position: 'relative',
   textAlign: 'center',
   paddingTop: '10%',
 }
 
+const CardsStyle = {
+  marginTop: '10%',
+}
+
 const SplashPage = () => {
   return(
     <div>
-      <div className="" style={splashStyle}>
-      </div>
+      <div className="container" style={splashStyle} />
       <div style={containerStyle}>
-        <h1 style={textStyle}><strong>Track your clan performance and favorite players</strong></h1>
+        <h1 style={textStyle}>Manage All Things Clash-related</h1>
+        <div className='container' style={CardsStyle}>
+          <div className='row'>
+            <div className='col-md-3'>
+              <DisplayCard
+                title="Look up Players"
+                text="Use official Clash Royale player tags to view an individual player's current deck
+                      and game statistics"
+                image={playersPic}
+              />
+            </div>
+            <div className='col-md-3'>
+              <DisplayCard
+                title="Favorite Players"
+                text="Keep track of all your favorite players by adding them to your favorites"
+                image={favoritesPic}
+              />
+            </div>
+            <div className='col-md-3'>
+              <DisplayCard
+                title="Clan Metrics"
+                text="Track your clanmates and see who's performing or underperforming"
+                image={metricsPic}
+              />
+            </div>
+            <div className='col-md-3'>
+              <DisplayCard
+                title="Create an Account"
+                text="Store your clan and all your favorites in an account for later use"
+                image={accountPic}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

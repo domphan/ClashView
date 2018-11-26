@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/signup', (req, res) => {
-  console.log(req.body);
+  const SALT_ROUNDS = 10;
   const { errors, isValid } = validateSignupInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
@@ -41,7 +41,7 @@ router.post('/signup', (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    bcrpyt.genSalt(10, (err, salt) => {
+    bcrpyt.genSalt(SALT_ROUNDS, (err, salt) => {
       if (err) console.error(`ERROR: ${err}`);
       else {
         bcrpyt.hash(newUser.password, salt, (err, hash) => {

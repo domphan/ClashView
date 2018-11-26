@@ -6,8 +6,11 @@ import { logoutUser } from '../actions/auth';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+const brand = require('../assets/three_crowns.png')
 
-
+const imgStyle = {
+  height: '150%',
+}
 
 class NavBar extends Component {
   onLogout(event) {
@@ -72,10 +75,13 @@ class NavBar extends Component {
     );
 
     return(
-      <Navbar collapseOnSelect>
+      <Navbar collapseOnSelect inverse>
         <Navbar.Header className="navbar-custom">
           <Navbar.Brand>
-            <Link to="/">Clash Clan Tracker</Link>
+            <Link to="/">
+              <img src={brand} alt="brand" style={imgStyle} />
+              Clash Clan Manager
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
