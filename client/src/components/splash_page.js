@@ -1,4 +1,5 @@
 import React from 'react';
+
 import DisplayCard from './display_card';
 const wallpaper = require('../assets/wallpaper.jpg');
 const metricsPic = require('../assets/king_mad.png');
@@ -10,12 +11,12 @@ const splashStyle = {
   padding: 0,
   border: 0,
   width: '100%',
-  height: '100vh',
+  height: '105vh',
   backgroundImage: `url(${wallpaper})`,
   backgroundSize: 'cover',
   filter: 'brightness(30%)',
+  position: 'fixed',
   display: 'inline-block',
-  position: 'absolute',
 };
 
 const textStyle = {
@@ -26,7 +27,7 @@ const textStyle = {
 const containerStyle = {
   position: 'relative',
   textAlign: 'center',
-  paddingTop: '10%',
+  paddingTop: '5%',
 }
 
 const CardsStyle = {
@@ -40,6 +41,7 @@ const rowStyle = {
 
 const colStyle = {
   flex: 1,
+  marginBottom: "3rem"
 }
 
 const SplashPage = () => {
@@ -83,8 +85,6 @@ const SplashPage = () => {
         </div>
       </div>
     </div>
-
-
   );
 }
 

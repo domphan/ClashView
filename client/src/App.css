@@ -55,10 +55,8 @@ nav.navbar {
     color: rgb(255, 255, 255);
     border-radius: 0;
 }
-.navbar-default .navbar-nav>li>a {
-  color: white;
-}
 
+/* Brand picture settings */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -67,25 +65,17 @@ nav.navbar {
   padding: 0px 5px;
 }
 
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-  color: white;
-  
-}
-.navbar>.container .navbar-brand:hover, .navbar>.container-fluid .navbar-brand {
-  color: rgb(139, 208, 170);
-  
-}
-
-.navbar>.container:hover {
-  color: rgb(139, 208, 170);
-}
-
+/* navlink colors */
 .navbar-inverse .navbar-nav>li>a {
   color: white;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
   color:rgb(139, 208, 170);
+}
+
+.navbar>.container-fluid .navbar-brand {
+  color: white;
 }
 
 .navbar-inverse {
@@ -95,4 +85,9 @@ nav.navbar {
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover,
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
   background: rgba(118, 109, 154, 0.3);
+}
+
+.sticky-nav {
+  position: sticky;
+  top: 0;
 }

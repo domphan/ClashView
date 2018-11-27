@@ -75,7 +75,7 @@ class NavBar extends Component {
     );
 
     return(
-      <Navbar collapseOnSelect inverse>
+      <Navbar collapseOnSelect inverse fluid fixedTop className="sticky-nav">
         <Navbar.Header className="navbar-custom">
           <Navbar.Brand>
             <Link to="/">

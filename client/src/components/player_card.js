@@ -3,19 +3,29 @@ import { Link } from 'react-router-dom';
 
 
 const imgStyle = {
-  width: "46px",
-  height: "55px"
+  width: "3.726rem",
+  height: "4.455rem",
+}
+
+const badgeStyle = {
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto',
 }
 
 const PlayerCard = (props) => {
   const { player } = props;
   return(
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="container" style={{ width: "18rem" }}>
       <p>
         <small><em>#{player.tag}</em></small>
       </p>
-      <img className="card-img-top" src={_clanIsEmpty(player) ? "..." : player.clan.badge.image} alt="No Clan" />
-      <div className="card-body">
+      <img 
+        className="card-img-top" 
+        src={_clanIsEmpty(player) ? "..." : player.clan.badge.image} 
+        alt="No Clan" 
+        style={badgeStyle} />
+      <div className="card-body container-fluid">
         <h3 className="card-title"><Link to={`/players/${player.tag}`}>{player.name}</Link></h3>
         <div className="card-text">
           <p>
@@ -35,32 +45,32 @@ const PlayerCard = (props) => {
           </p>
         </div>
       </div>
-      <div className="card-body">
+      <div className="card-body container-fluid">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[0].icon} alt="card1" style={imgStyle} />
           </div>
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[1].icon} alt="card1" style={imgStyle} />
           </div>
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[2].icon} alt="card1" style={imgStyle} />
           </div>
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[3].icon} alt="card1" style={imgStyle} />
           </div>
         </div>
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[4].icon} alt="card1" style={imgStyle} />
           </div>
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[5].icon} alt="card1" style={imgStyle} />
           </div>
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[6].icon} alt="card1" style={imgStyle} />
           </div>
-          <div className="col-md-3">
+          <div className="col-xs-3">
             <img src={player.currentDeck[7].icon} alt="card1" style={imgStyle} />
           </div>
         </div>

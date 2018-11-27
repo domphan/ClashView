@@ -37,7 +37,7 @@ class FavoritePage extends Component {
       <div className="container">
         <h1>Your Favorited Players</h1>
         <hr></hr>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             {Object.keys(favorites).length === 0 && 
               "Loading... this may take awhile"}
