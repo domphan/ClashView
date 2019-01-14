@@ -3,6 +3,8 @@ import PlayerCard from './player_card';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchFavorites } from '../actions/favorites';
+import PicHeader from './pic_header';
+const knightSkelePic = require('../assets/knight_skeles.png');
 
 
 class FavoritePage extends Component {
@@ -34,8 +36,10 @@ class FavoritePage extends Component {
     const { favorites } = this.props
     const { error } = favorites;
     return (
-      <div className="container">
-        <h1>Your Favorited Players</h1>
+      <div className="container" style={containerStyle}>
+        <PicHeader 
+          title={"Favorited Players"}
+          image={knightSkelePic} />
         <hr></hr>
         <div className="container-fluid">
           <div className="row">
@@ -48,6 +52,10 @@ class FavoritePage extends Component {
       </div>
     );
   }
+}
+
+const containerStyle = {
+  marginTop: '1rem',
 }
 const emptyMessage = "You have no favorites, why don't you view some players and add some?";
 const mapStateToProps = (state) => {

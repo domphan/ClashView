@@ -5,6 +5,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const usersRoute = require('./routes/users');
+const playersRoute = require('./routes/players');
+const clansRoute = require('./routes/clans');
+const favoritesRoute = require('./routes/favorites');
 const config = require('./db');
 
 const app = express();
@@ -24,6 +27,9 @@ app.use(bodyParser.json());
 app.use('/users', usersRoute);
 
 app.use('/api/users', usersRoute);
+app.use('/api/clans', clansRoute);
+// app.use('/api/players', playersRoute);
+// app.use('/api/favorites', favoritesRoute);
 
 // Run optimized react front-end build
 app.use(express.static(path.join(__dirname, 'build')));

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { assignKey } from '../actions/auth';
+import PicHeader from './pic_header';
+const nightWitchPic = require('../assets/night_witch.png')
 
 class ApiKey extends Component {
   constructor(props) {
@@ -83,14 +85,18 @@ class ApiKey extends Component {
     console.log(this.props.auth);
     const { api_key } = this.props.auth.user;
     return(
-      <div>
-        <h1>API Key</h1>
+      <div style={containerStyle}>
+        <PicHeader title={'API Key'} image={nightWitchPic} />
         {!api_key && this.renderForm()}
         {api_key && !this.state.clicked && this.renderKey()}
         {this.state.clicked && this.renderForm()}
       </div>
     );
   }
+}
+
+const containerStyle = {
+  marginTop: '1rem',
 }
 
 const mapStateToProps = (state) => {

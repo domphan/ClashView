@@ -16,13 +16,13 @@ const imgStyle = {
 }
 
 const optionalImage = (imageSrc) => {
-  return(
+  return (
     <img alt='img' src={imageSrc} style={imgStyle}></img>
   );
 }
 
 const DisplayCard = (props) => {
-  return(
+  return (
     <div className="card" style={cardStyle}>
       <div className="card-body"></div>
       <h4 className="card-title">{props.title}</h4>

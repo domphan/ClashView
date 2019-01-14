@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/player';
 import { withRouter } from 'react-router-dom';
+import PicHeader from './pic_header';
+const megaPic = require('../assets/mega_knight.png')
 //import PropTypes from 'prop-types';
 
 class SearchForm extends Component {
@@ -29,8 +31,8 @@ class SearchForm extends Component {
       this.props.history.push('/login');
     }
     return(
-      <div className="container">
-        <h1>Player Lookup</h1>
+      <div className="container" style={containerStyle}>
+        <PicHeader image={megaPic} title={'Player Lookup'} />
         <hr></hr>
         <br />
         <form onSubmit={this.handleSubmit}>
@@ -60,6 +62,10 @@ class SearchForm extends Component {
     );
   }
 }
+
+const containerStyle = {
+  marginTop: '1rem',
+};
 
 const mapStateToProps = (state) => {
   return {

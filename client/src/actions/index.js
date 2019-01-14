@@ -13,7 +13,8 @@ export const UPDATE_CLAN = 'update_clan';
 export const UPDATING_CLAN = 'updating_clan';
 export const NEW_CLAN = 'new_clan';
 
-const ROOT_URL = "https://clashclantracker.appspot.com";
+//const ROOT_URL = "https://clashclantracker.appspot.com";
+const ROOT_URL = "http://localhost:3001/api";
 
 export const _checkLogin = () => {
   if (localStorage.jwtToken) {
@@ -35,9 +36,11 @@ export const fetchClan = (api_key) => dispatch => {
   }
   axios.get(
     `${ROOT_URL}/clans`,
-    {headers: {
-      "auth": api_key
-    }})
+    {
+      headers: {
+        "auth": api_key
+      }
+    })
     .then(res => {
       dispatch({
         type: FETCH_CLAN,
@@ -63,7 +66,7 @@ export const updateClan = (clanTag, clan_id, api_key) => dispatch => {
   axios.put(
     `${ROOT_URL}/clans/${clan_id}`,
     data,
-    { headers: { "auth": api_key }}
+    { headers: { "auth": api_key } }
   )
     .then(res => {
       dispatch({
@@ -74,19 +77,19 @@ export const updateClan = (clanTag, clan_id, api_key) => dispatch => {
     .catch((error) => {
       dispatch({
         type: ERROR_CLAN,
-        payload: { error: "cannot fetch clan "}
+        payload: { error: "cannot fetch clan " }
       });
     });
 }
 
 export const sortTable = (data, key, direction) => {
-  let newObj = {...data};
+  let newObj = { ...data };
   if (direction) {
     newObj.members = sortByDesc(newObj.members, key);
   } else {
     newObj.members = sortByAsc(newObj.members, key);
   }
-  
+
   return {
     type: SORT_TABLE_DESC,
     payload: newObj,
@@ -106,7 +109,7 @@ export const addClan = (clanTag, api_key) => dispatch => {
   axios.post(
     `${ROOT_URL}/clans`,
     data,
-    { headers: { auth: api_key }})
+    { headers: { auth: api_key } })
     .then(res => {
       dispatch({
         type: NEW_CLAN,

@@ -1,9 +1,8 @@
 {
-  "main.css": "static/css/main.a6361bf2.css",
-  "main.css.map": "static/css/main.a6361bf2.css.map",
-  "main.js": "static/js/main.fea636a6.js",
-  "main.js.map": "static/js/main.fea636a6.js.map",
-  "static/media/barb_knight.png": "static/media/barb_knight.b481dbce.png",
+  "main.css": "static/css/main.c3fdeaa8.css",
+  "main.css.map": "static/css/main.c3fdeaa8.css.map",
+  "main.js": "static/js/main.73a2ef0e.js",
+  "main.js.map": "static/js/main.73a2ef0e.js.map",
   "static/media/glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
   "static/media/glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.89889688.svg",
   "static/media/glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
@@ -11,7 +10,11 @@
   "static/media/glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2",
   "static/media/king_mad.png": "static/media/king_mad.e3988907.png",
   "static/media/knight_skeles.png": "static/media/knight_skeles.2411a87d.png",
-  "static/media/prince_wave.png": "static/media/prince_wave.f955fc3d.png",
+  "static/media/mega_knight.png": "static/media/mega_knight.725755f5.png",
+  "static/media/mini_pekka.png": "static/media/mini_pekka.500b5bbd.png",
+  "static/media/night_witch.png": "static/media/night_witch.dc0f63a4.png",
+  "static/media/prince_wave.png": "static/media/prince_wave.435c1d1b.png",
   "static/media/three_crowns.png": "static/media/three_crowns.187d20d2.png",
-  "static/media/wallpaper.jpg": "static/media/wallpaper.bc2280a4.jpg"
+  "static/media/wallpaper.jpg": "static/media/wallpaper.bc2280a4.jpg",
+  "static/media/wizard.png": "static/media/wizard.7b13b532.png"
 }

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { newSearch, fetchPlayer } from '../actions/player';
 import { addFavorite, fetchFavorites, removeFavorite } from '../actions/favorites';
+import PicHeader from './pic_header';
+const accountPic = require('../assets/prince_wave.png');
+
 
 class PlayerPage extends Component {
   componentWillUnmount() {
@@ -95,11 +98,14 @@ class PlayerPage extends Component {
       );
     }
     return (
-      <div className="container">
+      <div className="container" style={containerStyle}>
         <div className="row">
-          <div className="col-md-11">
-            <h1><strong>{player.name}</strong></h1>
-            <h2>{player.tag}</h2>
+          <PicHeader 
+            title={player.name} 
+            caption={`#${player.tag}`} 
+            image={accountPic} />
+          <hr />
+          <div className="col-md-10">
             <h3>Trophies: {player.trophies} {player.arena.name}</h3>
             <h3>Clan: {player.clan.name} <small>(#{player.clan.tag})</small></h3>
             <h4>Games: {player.games.total}</h4>
@@ -108,13 +114,17 @@ class PlayerPage extends Component {
             <h4>War day wins: {player.games.warDayWins}</h4>
             <h4>W/L/D: {player.games.winsPercent}/{player.games.lossesPercent}/{player.games.drawsPercent}</h4>
           </div>
-          <div className="col-md-1">
+          <div className="col-md-2">
             {this.checkIfFavorited()}
           </div>
         </div>
       </div>
     );
   }
+}
+
+const containerStyle ={
+  marginTop: '1rem',
 }
 
 const mapStateToProps = (state) => {

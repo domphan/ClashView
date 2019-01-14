@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchClan, sortTable, updateClan } from '../actions';
-import ApiInfo from '../components/api_info';
-import ClanForm from '../components/clan_form';
-import PlayerTable from '../components/player_table';
-import _ from 'lodash';
+import ApiInfo from './api_info';
+import ClanForm from './clan_form';
+import PlayerTable from './player_table';
+import PicHeader from './pic_header';
+const wizPic = require('../assets/wizard.png')
+
 
 class ClanPage extends Component {
   constructor(props) {
@@ -96,9 +97,10 @@ class ClanPage extends Component {
       const refreshButton = "btn btn-success glyphicon glyphicon-refresh";
       const disabled = "btn btn-success glyphicon glyphicon-refresh disabled";
       return (
-        <div className="container">
-          <h1>
-            {clan.name}
+        <div className="container" style={containerStyle}>
+          <PicHeader title={clan.name} image={wizPic} caption={`#${clan.clan_tag}`} />
+          <hr></hr>
+          <div>
             <span className="pull-right">
               {this.renderEdit()}
               <span> </span>
@@ -107,13 +109,11 @@ class ClanPage extends Component {
                 onClick={this.refreshClan.bind(this)}
               />
             </span>
-          </h1>
-          <hr></hr>
-          <h3>#{clan.clan_tag}</h3>
+          </div>
           <h4>Members: {clan.member_amount}</h4>
           <h4>Donations per week: {clan.donations_per_week}</h4>
-          <h4>Weakest Link: {clan.weakest_link}</h4>
-          <h4>Inactive members: {clan.inactive_members}</h4>
+          <h4>Worst Donator: {clan.weakest_link}</h4>
+          <h4>Inactive this week: <small>{clan.inactive_members}</small></h4>
           <hr></hr>
           <PlayerTable />
         </div>
@@ -123,6 +123,10 @@ class ClanPage extends Component {
       <div className="container">loading</div>
     );
   }
+}
+
+const containerStyle = {
+  marginTop: '1rem',
 }
 
 const mapStateToProps = (state) => {
