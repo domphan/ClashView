@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cors = require('cors');
 const usersRoute = require('./routes/users');
 const playersRoute = require('./routes/players');
 const clansRoute = require('./routes/clans');
@@ -21,8 +22,9 @@ mongoose.connect(config.DB, { useNewUrlParser: true })
   );
 require('./passport')(passport);
 
+app.use(cors());
 app.use(morgan('tiny'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/users', usersRoute);
 

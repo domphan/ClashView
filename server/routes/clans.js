@@ -24,12 +24,31 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res, nex
       headers: { auth },
     },
   )
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((error) => {
-      next(error);
-    });
+    .then(response => res.send(response.data))
+    .catch(error => next(error));
+});
+
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  const { auth } = req.headers;
+  axios.post(
+    `${ROOT_URL}/clans`,
+    req.body,
+    { headers: { auth } },
+  )
+    .then(response => res.send(response.data))
+    .catch(error => next(error));
+});
+
+router.put('/:clanid', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  const { auth } = req.headers;
+  const { clanid } = req.params;
+  axios.put(
+    `${ROOT_URL}/clans/${clanid}`,
+    req.body,
+    { headers: { auth } },
+  )
+    .then(response => res.send(response.data))
+    .catch(error => next(error));
 });
 
 module.exports = router;
