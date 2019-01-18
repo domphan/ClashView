@@ -30,7 +30,7 @@ app.use('/users', usersRoute);
 
 app.use('/api/users', usersRoute);
 app.use('/api/clans', clansRoute);
-// app.use('/api/players', playersRoute);
+app.use('/api/players', playersRoute);
 // app.use('/api/favorites', favoritesRoute);
 
 // Run optimized react front-end build

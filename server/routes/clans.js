@@ -30,6 +30,9 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res, nex
 
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   const { auth } = req.headers;
+  if (isEmpty(auth)) {
+    res.status(403).json({ error: 'no auth' });
+  }
   axios.post(
     `${ROOT_URL}/clans`,
     req.body,
@@ -42,6 +45,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
 router.put('/:clanid', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   const { auth } = req.headers;
   const { clanid } = req.params;
+  if (isEmpty(auth)) {
+    res.status(403).json({ error: 'no auth' });
+  }
   axios.put(
     `${ROOT_URL}/clans/${clanid}`,
     req.body,
